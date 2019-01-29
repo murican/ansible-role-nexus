@@ -1,0 +1,6 @@
+---
+- name: include user tasks
+  import_tasks: user.yml
+  tags:
+  - nexus
+  - nexus-user
