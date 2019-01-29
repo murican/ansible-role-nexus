@@ -2,3 +2,14 @@
 nexus_download_url: https://download.sonatype.com/nexus/3/latest-unix.tar.gz
 nexus_group_name: nexus
 nexus_user_name: nexus
+nexus_full_version: 3.15.2-01
+
+nexus_base_path: /var/lib/nexus
+nexus_log_path: '{{ nexus_base_path }}/data/log'
+nexus_bin_path: '{{ nexus_base_path }}/nexus-{{ nexus_full_version }}/bin'
+nexus_data_path: '../data'
+nexus_tmp_path: '../data/tmp'
+nexus_directories:
+- '{{ nexus_base_path }}'
+- '{{ nexus_log_path }}'
+- '{{ nexus_bin_path }}'
