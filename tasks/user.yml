@@ -1,0 +1,13 @@
+---
+- name: ensure nexus group exists
+  group:
+    name: "{{ nexus_group_name }}"
+    gid: '{{ nexus_group_id | default(omit) }}'
+    state: present
+
+- name: ensure nexus user exists
+  user:
+    name: "{{ nexus_user_name }}"
+    group: "{{ nexus_group_name }}"
+    uid: '{{ nexus_user_id | default(omit) }}'
+    state: present
