@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.cpus = 2
+  end
+
+  config.vm.define :nexus do |machine|
+      machine.vm.box = "centos/7"
+      machine.vm.hostname = "nexus01.roletest"
+      machine.vm.network :forwarded_port, guest: 8081, host: 8081
+      machine.vm.network :private_network, ip: "192.168.33.10"
+      machine.vm.synced_folder ".", "/vagrant", disabled: true
+      machine.vm.provision "ansible" do |ansible|
+        ansible.playbook = "site.yml"
+        ansible.raw_arguments = [ "--diff", "-vv" ]
+        ansible.extra_vars = YAML.load_file('extra.vars')
+      end
+  end
+end
