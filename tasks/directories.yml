@@ -1,5 +1,21 @@
 ---
-- name: ensure nexus directories
+- name: ensure nexus base directory
+  file:
+    path: '{{ nexus_base_path }}'
+    state: directory
+    owner: '{{ nexus_user_name }}'
+    group: '{{ nexus_group_name }}'
+    mode: '0755'
+
+- name: list nexus archive to determine version
+  shell: tar tf {{ nexus_tmp_archive_file }} | head -1 | sed -e 's/\/.*//'
+  changed_when: false
+  register: nexus_archive_version
+
+- set_fact:
+    nexus_full_version: "{{ nexus_archive_version.stdout }}"
+
+- name: ensure nexus sub directories
   file:
     path: '{{ item }}'
     state: directory
@@ -7,7 +23,7 @@
     group: '{{ nexus_group_name }}'
     mode: '0755'
   with_items:
-  - '{{ nexus_directories }}'
+  - '{{ nexus_sub_directories }}'
 
 - name: ensure etc security limits.d directory
   file:
