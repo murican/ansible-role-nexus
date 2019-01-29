@@ -10,3 +10,9 @@
   tags:
   - nexus
   - nexus-dir
+
+- name: include installation tasks
+  import_tasks: install.yml
+  tags:
+  - nexus
+  - nexus-install
