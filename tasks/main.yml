@@ -1,5 +1,5 @@
 ---
-- name: include user tasks
+- name: import user tasks
   import_tasks: user.yml
   tags:
   - nexus
@@ -11,13 +11,13 @@
   - nexus
   - nexus-download
 
-- name: include directory tasks
+- name: import directory tasks
   import_tasks: directories.yml
   tags:
   - nexus
   - nexus-dir
 
-- name: include installation tasks
+- name: import installation tasks
   import_tasks: install.yml
   tags:
   - nexus
