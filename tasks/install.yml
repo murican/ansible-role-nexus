@@ -1,0 +1,35 @@
+---
+- name: ensure java openjdk
+  package:
+    name: '{{ nexus_java_package_name }}'
+    state: '{{ nexus_java_package_state }}'
+
+- name: ensure nexus archive from official site
+  get_url:
+    url: '{{ nexus_download_url }}'
+    dest: /tmp/nexus.tar.gz
+
+- name: unarchive nexus package
+  unarchive:
+    src: /tmp/nexus.tar.gz
+    dest: '{{ nexus_base_path }}'
+    creates: '{{ nexus_base_path }}/.installed'
+    remote_src: yes
+  when: not ansible_check_mode
+
+- name: set owner of installed files
+  file:
+    path: '{{ nexus_base_path }}'
+    owner: '{{ nexus_user_name }}'
+    group: '{{ nexus_group_name }}'
+    mode: '0755'
+    recurse: yes
+
+- name: ensure empty install file
+  copy:
+    content: ""
+    dest: '{{ nexus_base_path }}/.installed'
+    force: no
+    owner: '{{ nexus_user_name }}'
+    group: '{{ nexus_group_name }}'
+    mode: '0644'
