@@ -4,3 +4,9 @@
   tags:
   - nexus
   - nexus-user
+
+- name: include directory tasks
+  import_tasks: directories.yml
+  tags:
+  - nexus
+  - nexus-dir
