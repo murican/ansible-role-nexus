@@ -5,6 +5,12 @@
   - nexus
   - nexus-user
 
+- name: import download tasks
+  import_tasks: download.yml
+  tags:
+  - nexus
+  - nexus-download
+
 - name: include directory tasks
   import_tasks: directories.yml
   tags:
