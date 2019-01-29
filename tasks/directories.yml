@@ -1,0 +1,16 @@
+---
+- name: ensure nexus directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ nexus_user_name }}'
+    group: '{{ nexus_group_name }}'
+    mode: '0755'
+  with_items:
+  - '{{ nexus_directories }}'
+
+- name: ensure etc security limits.d directory
+  file:
+    path: /etc/security/limits.d/
+    state: directory
+    mode: '0755'
