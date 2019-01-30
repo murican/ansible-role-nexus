@@ -17,7 +17,7 @@
     path: '{{ nexus_base_path }}'
     owner: '{{ nexus_user_name }}'
     group: '{{ nexus_group_name }}'
-    mode: '0755'
+    #mode: '0755'
     recurse: yes
 
 - name: ensure empty install file
