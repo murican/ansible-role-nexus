@@ -20,8 +20,8 @@ nexus_sub_directories:
 - '{{ nexus_bin_path }}'
 
 nexus_max_memory_size: 2G
-nexus_java_heap_mem_xms: 1200M
-nexus_java_heap_mem_xmx: 1200M
+nexus_java_heap_mem_xms: 256M
+nexus_java_heap_mem_xmx: 1500M
 nexus_limit_nofile: 65536
 
 nexus_vmoptions_file_src: nexus.vmoptions.j2
