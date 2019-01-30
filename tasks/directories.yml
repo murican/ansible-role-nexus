@@ -29,4 +29,6 @@
   file:
     path: /etc/security/limits.d/
     state: directory
+    owner: root
+    group: root
     mode: '0755'
