@@ -1,0 +1,14 @@
+[Unit]
+Description=Nexus Repository Manager
+Documentation=http://books.sonatype.com/nexus-book/3.0/
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+LimitNOFILE={{ nexus_limit_nofile }}
+ExecStart={{ nexus_bin_path }}/nexus start
+ExecStop={{ nexus_bin_path }}/nexus stop
+User={{ nexus_user_name }}
+
+[Install]
+WantedBy=multi-user.target
