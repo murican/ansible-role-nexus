@@ -22,3 +22,9 @@
   tags:
   - nexus
   - nexus-install
+
+- name: import configuration tasks
+  import_tasks: config.yml
+  tags:
+  - nexus
+  - nexus-config
