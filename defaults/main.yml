@@ -19,3 +19,10 @@ nexus_sub_directories:
 nexus_max_memory_size: 2G
 nexus_java_heap_mem_xms: 1200M
 nexus_java_heap_mem_xmx: 1200M
+nexus_limit_nofile: 65536
+
+nexus_vmoptions_file_src: nexus.vmoptions.j2
+nexus_vmoptions_file_dest: '{{ nexus_bin_path }}/nexus.vmoptions'
+nexus_limit_config_file: /etc/security/limits.d/99-nexus.conf
+nexus_systemd_unit_file_src: nexus.service.j2
+nexus_systemd_unit_file_dest: /usr/lib/systemd/system/nexus.service
