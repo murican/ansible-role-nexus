@@ -5,7 +5,7 @@
     dest: '{{ nexus_vmoptions_file_dest }}'
     owner: '{{ nexus_user_name }}'
     group: '{{ nexus_group_name }}'
-    mode: '0644'
+    mode: '0755'
   notify:
   - restart nexus
 
