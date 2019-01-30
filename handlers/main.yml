@@ -1,0 +1,22 @@
+---
+- name: reload systemd
+  systemd:
+    daemon_reload: true
+
+- name: stop nexus
+  service:
+    name: '{{ item }}'
+    state: stopped
+  with_items: '{{ nexus_service_names }}'
+
+- name: start nexus
+  service:
+    name: '{{ item }}'
+    state: started
+  with_items: '{{ nexus_service_names }}'
+
+- name: restart nexus
+  service:
+    name: '{{ item }}'
+    state: restarted
+  with_items: '{{ nexus_service_names }}'
