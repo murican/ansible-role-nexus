@@ -1,6 +1,6 @@
--Xms1200M
--Xmx1200M
--XX:MaxDirectMemorySize=2G
+-Xms{{ nexus_java_heap_mem_xms }}
+-Xmx{{ nexus_java_heap_mem_xmx }}
+-XX:MaxDirectMemorySize={{ nexus_max_memory_size }}
 -XX:+UnlockDiagnosticVMOptions
 -XX:+UnsyncloadClass
 -XX:+LogVMOutput
