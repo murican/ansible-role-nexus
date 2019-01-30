@@ -1,0 +1,44 @@
+---
+- name: configure nexus.vmoptions file
+  template:
+    src: '{{ nexus_vmoptions_file_src }}'
+    dest: '{{ nexus_vmoptions_file_dest }}'
+    owner: '{{ nexus_user_name }}'
+    group: '{{ nexus_group_name }}'
+    mode: '0644'
+  notify:
+  - restart nexus
+
+- name: gathering stats of nexus limits.d config file
+  stat:
+    path: '{{ nexus_limit_config_file }}'
+  check_mode: false
+  register: nexus_limits_file_register
+
+- name: touch limits file
+  file:
+    path: '{{ nexus_limit_config_file }}'
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
+  when:
+  - not nexus_limits_file_register.stat.exists
+
+- name: configure limits for nexus user
+  lineinfile:
+    path: '{{ nexus_limit_config_file }}'
+    line: '{{ nexus_user_name }} - nofile {{ nexus_limit_nofile }}'
+  notify:
+  - restart nexus
+
+- name: configure systemd unit file for nexus
+  template:
+    src: '{{ nexus_systemd_unit_file_src }}'
+    dest: '{{ nexus_systemd_unit_file_dest }}'
+    mode: '0644'
+    owner: root
+    group: root
+  notify:
+  - reload systemd
+  - restart nexus
