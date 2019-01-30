@@ -6,7 +6,10 @@ nexus_user_name: nexus
 
 nexus_java_package_name: java-1.8.0-openjdk
 nexus_java_package_state: present
-
+nexus_service_state: started
+nexus_service_enabled: yes
+nexus_service_names:
+- nexus
 nexus_base_path: /var/lib/nexus
 nexus_log_path: '{{ nexus_base_path }}/data/log'
 nexus_bin_path: '{{ nexus_base_path }}/{{ nexus_full_version }}/bin'
