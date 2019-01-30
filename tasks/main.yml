@@ -28,3 +28,12 @@
   tags:
   - nexus
   - nexus-config
+
+- name: flush handlers
+  meta: flush_handlers
+
+- name: import service tasks
+  import_tasks: service.yml
+  tags:
+  - nexus
+  - nexus-service
