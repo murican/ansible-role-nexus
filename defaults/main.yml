@@ -15,3 +15,7 @@ nexus_tmp_path: '../data/tmp'
 nexus_sub_directories:
 - '{{ nexus_log_path }}'
 - '{{ nexus_bin_path }}'
+
+nexus_max_memory_size: 2G
+nexus_java_heap_mem_xms: 1200M
+nexus_java_heap_mem_xmx: 1200M
