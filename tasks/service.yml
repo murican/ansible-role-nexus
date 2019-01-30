@@ -1,0 +1,7 @@
+---
+- name: ensure nexus service
+  service:
+    name: '{{ item }}'
+    state: '{{ nexus_service_state }}'
+    enabled: '{{ nexus_service_enabled }}'
+  with_items: '{{ nexus_service_names }}'
